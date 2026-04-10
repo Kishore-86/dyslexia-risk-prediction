@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dataset Preprocessing</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#eef3f9;
+font-family:'Poppins',sans-serif;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+height:100vh;
+width:250px;
+position:fixed;
+left:0;
+top:0;
+background:linear-gradient(180deg,#0f4c81,#1c87ff);
+padding:30px 20px;
+color:white;
+box-shadow:3px 0 20px rgba(0,0,0,0.2);
+}
+
+.logo{
+text-align:center;
+font-weight:700;
+margin-bottom:40px;
+font-size:22px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.menu a{
+display:flex;
+align-items:center;
+gap:12px;
+padding:14px 16px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+font-size:15px;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.3s;
+}
+
+.menu a:hover{
+background:rgba(255,255,255,0.18);
+transform:translateX(6px);
+}
+
+.menu a.active{
+background:white;
+color:#0f4c81;
+font-weight:600;
+}
+
+.menu a.logout{
+margin-top:20px;
+background:rgba(255,80,80,0.2);
+}
+
+.menu a.logout:hover{
+background:#ff4d4d;
+color:white;
+}
+
+/* HEADER */
+
+.header{
+margin-left:250px;
+height:75px;
+background:linear-gradient(135deg,#ffffff,#f4f7fc);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.header-left h4{
+font-weight:700;
+color:#0f4c81;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+margin-left:250px;
+padding:40px;
+}
+
+/* INFO CARDS */
+
+.info-card{
+background:white;
+padding:30px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.info-card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.info-card h3{
+font-weight:700;
+font-size:36px;
+color:#0f4c81;
+margin-bottom:5px;
+}
+
+.info-card p{
+color:#6c757d;
+}
+
+/* PROCESS CARD */
+
+.process-card{
+background:white;
+padding:30px;
+border-radius:18px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+margin-top:30px;
+}
+
+/* TABLE CONTAINER */
+
+.table-container{
+border-radius:12px;
+overflow:hidden;
+border:1px solid #e2e8f0;
+box-shadow:0 6px 18px rgba(0,0,0,0.05);
+}
+
+/* TABLE */
+
+table{
+font-size:14px;
+margin-bottom:0;
+}
+
+/* TABLE HEADER */
+
+thead{
+background:linear-gradient(135deg,#1c87ff,#0f4c81);
+color:white;
+}
+
+thead th{
+padding:16px;
+font-weight:600;
+border:none !important;
+letter-spacing:0.3px;
+}
+
+/* TABLE BODY */
+
+tbody td{
+padding:16px;
+border-top:1px solid #eef2f7 !important;
+color:#444;
+}
+
+/* ROW HOVER */
+
+tbody tr{
+transition:0.25s;
+}
+
+tbody tr:hover{
+background:#f2f7ff;
+transform:scale(1.01);
+}
+
+/* BUTTON */
+
+.process-btn{
+background:linear-gradient(135deg,#1c87ff,#0f4c81);
+border:none;
+padding:11px 32px;
+border-radius:8px;
+color:white;
+font-weight:600;
+margin-top:25px;
+box-shadow:0 5px 12px rgba(0,0,0,0.15);
+}
+
+.process-btn:hover{
+opacity:0.9;
+transform:translateY(-2px);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h3 class="logo"><i class="fa fa-brain"></i> NeuroRead</h3>
+
+<div class="menu">
+
+<a href="/admin_dashboard">
+<i class="fa fa-chart-line"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/Users">
+<i class="fa fa-users"></i>
+<span>Manage Users</span>
+</a>
+
+<a class="active" href="/process1">
+<i class="fa fa-brain"></i>
+<span>Train Model</span>
+</a>
+
+<a class="logout" href="/logout">
+<i class="fa fa-sign-out-alt"></i>
+<span>Logout</span>
+</a>
+
+</div>
+
+</div>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="header-left">
+<h4><i class="fa fa-cogs"></i> Dataset Preprocessing</h4>
+</div>
+
+<div class="user-profile">
+<span>Admin</span>
+</div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+<div class="container-fluid">
+
+<!-- DATASET INFO -->
+
+<div class="row g-4">
+
+<div class="col-md-6">
+
+<div class="info-card">
+<h3>{{rows}}</h3>
+<p>Total Dataset Rows</p>
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="info-card">
+<h3>{{cols}}</h3>
+<p>Total Dataset Columns</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- SUMMARY TABLE -->
+
+<div class="process-card">
+
+<h5 class="mb-4">
+<i class="fa fa-table"></i> Feature Summary
+</h5>
+
+<div class="table-container">
+
+<table class="table">
+
+<thead>
+
+<tr>
+<th>Feature</th>
+<th>Count</th>
+<th>Data Type</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for s in summary %}
+
+<tr>
+<td>{{s[0]}}</td>
+<td>{{s[1]}}</td>
+<td>{{s[2]}}</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- NEXT PROCESS -->
+
+<div class="text-end">
+
+<a href="/process3" class="process-btn">
+Next Process →
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

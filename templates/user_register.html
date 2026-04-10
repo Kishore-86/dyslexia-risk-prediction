@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>NeuroRead - User Registration</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../static/assets/img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="../static/assets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles for User Registration Overlay -->
+<style>
+    /* Make the hero area full screen */
+    .hero-area {
+        position: relative;
+        height: 100vh;
+        z-index: 1;
+    }
+
+    .hero-slides .single-hero-slide {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    /* Ensure overlay is above everything */
+    .register-overlay {
+        position: relative; /* relative to hero slide */
+        z-index: 5; /* higher than hero content but lower than navbar */
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px 30px;
+        border-radius: 10px;
+        max-width: 450px;
+        width: 100%;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .register-overlay h3 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+
+    .register-overlay .form-control {
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .register-overlay button {
+        width: 100%;
+    }
+
+    /* Navbar stays on top */
+    .header-area {
+        position: relative;
+        z-index: 10;
+    }
+
+    /* Optional: slightly dim background for clarity */
+    .hero-slides .single-hero-slide::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.35); /* dim background for contrast */
+        z-index: 1;
+    }
+</style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="medilife-load"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="h-100 d-md-flex justify-content-between align-items-center">
+                            <p>Welcome to <span>NeuroRead</span> template</p>
+                            <p>Opening Hours : Monday to Saturday - 8am to 10pm Contact : <span>+12-823-611-8721</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-header-area" id="stickyHeader">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 h-100">
+                        <div class="main-menu h-100">
+                            <nav class="navbar h-100 navbar-expand-lg">
+                                <a class="navbar-brand" href="/"><img src="../static/assets/img/core-img/logo.png" alt="Logo"></a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu"
+                                    aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span
+                                        class="navbar-toggler-icon"></span></button>
+
+                                <div class="collapse navbar-collapse" id="medilifeMenu">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/admin">Admin Login</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="/register">User Register</a>
+                                        </li>
+                                    </ul>
+                                    <a href="/login" class="btn medilife-appoint-btn ml-30">ALREADY HAVE ACCOUNT?</a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Hero Area Start ***** -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+
+            <!-- Slide 1 -->
+<div class="single-hero-slide bg-img" style="background-image: url(../static/assets/img/bg-img/hero1.jpg);">
+    <div class="container h-100 d-flex align-items-center justify-content-center">
+        <!-- User Registration Overlay -->
+        <div class="register-overlay">
+            <h3>User Registration</h3>
+            <form method="POST" action="/register">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <input type="text" name="mobile" class="form-control" placeholder="Mobile" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <input type="number" name="age" class="form-control" placeholder="Age" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <select name="gender" class="form-control" required>
+                                                <option value="">Select Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <input type="text" name="username" class="form-control" placeholder="Username" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                    </div>
+
+                                    <button class="btn btn-primary">Register</button>
+            </form>
+            <hr>
+            <div class="text-center">
+                <a href="/login">Already have an account? Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- Slide 2 -->
+            <div class="single-hero-slide bg-img bg-overlay-dark" style="background-image: url(../static/assets/img/bg-img/breadcumb1.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Empty slide, carousel active -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ***** Hero Area End ***** -->
+
+    <!-- ***** Footer Area Start ***** -->
+    <footer class="footer-area section-padding-100">
+        <div class="main-footer-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="footer-logo">
+                                <img src="../static/assets/img/core-img/logo.png" alt="">
+                            </div>
+                            <p>NeuroRead - AI-Powered Learning Platform.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ***** Footer Area End ***** -->
+
+    <!-- jQuery -->
+    <script src="../static/assets/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="../static/assets/js/popper.min.js"></script>
+    <script src="../static/assets/js/bootstrap.min.js"></script>
+    <script src="../static/assets/js/plugins.js"></script>
+    <script src="../static/assets/js/active.js"></script>
+</body>
+
+</html>

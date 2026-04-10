@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>NeuroRead - User Login</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../static/assets/img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="../static/assets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles for User Login Overlay -->
+    <style>
+        .hero-area {
+            position: relative;
+            height: 100vh;
+        }
+
+        .hero-slides .single-hero-slide {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* User Login Overlay */
+        .login-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .login-overlay h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .login-overlay .form-control {
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .login-overlay button {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="medilife-load"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="h-100 d-md-flex justify-content-between align-items-center">
+                            <p>Welcome to <span>NeuroRead</span> template</p>
+                            <p>Opening Hours : Monday to Saturday - 8am to 10pm Contact : <span>+12-823-611-8721</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-header-area" id="stickyHeader">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 h-100">
+                        <div class="main-menu h-100">
+                            <nav class="navbar h-100 navbar-expand-lg">
+                                <a class="navbar-brand" href="/"><img src="../static/assets/img/core-img/logo.png" alt="Logo"></a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu"
+                                    aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span
+                                        class="navbar-toggler-icon"></span></button>
+
+                                <div class="collapse navbar-collapse" id="medilifeMenu">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/admin">Admin Login</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="/login">User Login</a>
+                                        </li>
+                                    </ul>
+                                    <a href="/register" class="btn medilife-appoint-btn ml-30">FOR REGISTER CLICK HERE</a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Hero Area Start ***** -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+
+            <!-- Slide 1 -->
+            <div class="single-hero-slide bg-img bg-overlay-dark" style="background-image: url(../static/assets/img/bg-img/hero1.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- User Login Overlay -->
+                            <div class="login-overlay">
+                                <h3>User Login</h3>
+                                <form method="POST" action="/login">
+                                    <input type="text" name="username" class="form-control" placeholder="Username" required>
+                                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                    <button class="btn btn-success">Login</button>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a href="/register">Create New Account</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="single-hero-slide bg-img bg-overlay-dark" style="background-image: url(../static/assets/img/bg-img/breadcumb1.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Empty slide, carousel active -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ***** Hero Area End ***** -->
+
+    <!-- ***** Footer Area Start ***** -->
+    <footer class="footer-area section-padding-100">
+        <div class="main-footer-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="footer-logo">
+                                <img src="../static/assets/img/core-img/logo.png" alt="">
+                            </div>
+                            <p>NeuroRead - AI-Powered Learning Platform.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ***** Footer Area End ***** -->
+
+    <!-- jQuery -->
+    <script src="../static/assets/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="../static/assets/js/popper.min.js"></script>
+    <script src="../static/assets/js/bootstrap.min.js"></script>
+    <script src="../static/assets/js/plugins.js"></script>
+    <script src="../static/assets/js/active.js"></script>
+</body>
+
+</html>

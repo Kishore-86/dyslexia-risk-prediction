@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feature Categorization</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#eef3f9;
+font-family:'Poppins',sans-serif;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+height:100vh;
+width:250px;
+position:fixed;
+left:0;
+top:0;
+background:linear-gradient(180deg,#0f4c81,#1c87ff);
+padding:30px 20px;
+color:white;
+box-shadow:3px 0 20px rgba(0,0,0,0.2);
+}
+
+.logo{
+text-align:center;
+font-weight:700;
+margin-bottom:40px;
+font-size:22px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.menu a{
+display:flex;
+align-items:center;
+gap:12px;
+padding:14px 16px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+font-size:15px;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.3s;
+}
+
+.menu a:hover{
+background:rgba(255,255,255,0.18);
+transform:translateX(6px);
+}
+
+.menu a.active{
+background:white;
+color:#0f4c81;
+font-weight:600;
+}
+
+.menu a.logout{
+margin-top:20px;
+background:rgba(255,80,80,0.2);
+}
+
+.menu a.logout:hover{
+background:#ff4d4d;
+color:white;
+}
+
+/* HEADER */
+
+.header{
+margin-left:250px;
+height:75px;
+background:linear-gradient(135deg,#ffffff,#f4f7fc);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.header-left h4{
+font-weight:700;
+color:#0f4c81;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+margin-left:250px;
+padding:40px;
+}
+
+/* FEATURE CARD */
+
+.feature-card{
+background:white;
+border-radius:18px;
+padding:30px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+height:100%;
+}
+
+/* FEATURE LIST */
+
+.list-group-item{
+font-size:14px;
+border:none;
+border-bottom:1px solid #eee;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.list-group-item i{
+color:#1c87ff;
+}
+
+/* TITLE */
+
+.card-title{
+font-weight:700;
+color:#0f4c81;
+margin-bottom:15px;
+}
+
+/* BUTTON */
+
+.process-btn{
+background:linear-gradient(135deg,#1c87ff,#0f4c81);
+border:none;
+padding:10px 30px;
+border-radius:8px;
+color:white;
+font-weight:600;
+margin-top:30px;
+}
+
+.process-btn:hover{
+opacity:0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h3 class="logo"><i class="fa fa-brain"></i> NeuroRead</h3>
+
+<div class="menu">
+
+<a href="/admin_dashboard">
+<i class="fa fa-chart-line"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/Users">
+<i class="fa fa-users"></i>
+<span>Manage Users</span>
+</a>
+
+<a class="active" href="/process1">
+<i class="fa fa-brain"></i>
+<span>Train Model</span>
+</a>
+
+<a class="logout" href="/logout">
+<i class="fa fa-sign-out-alt"></i>
+<span>Logout</span>
+</a>
+
+</div>
+
+</div>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="header-left">
+<h4><i class="fa fa-layer-group"></i> Feature Categorization</h4>
+</div>
+
+<div>
+<span>Admin</span>
+</div>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+<div class="container-fluid">
+
+<div class="row g-4">
+
+
+<!-- INPUT FEATURES -->
+
+<div class="col-md-6">
+
+<div class="feature-card">
+
+<h5 class="card-title">
+<i class="fa fa-input"></i> Input Features
+</h5>
+
+<ul class="list-group">
+
+{% for f in features %}
+
+<li class="list-group-item">
+<i class="fa fa-circle"></i>
+{{f}}
+</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+</div>
+
+
+<!-- TARGET VARIABLES -->
+
+<div class="col-md-6">
+
+<div class="feature-card">
+
+<h5 class="card-title">
+<i class="fa fa-bullseye"></i> Target Variables
+</h5>
+
+<ul class="list-group">
+
+{% for t in targets %}
+
+<li class="list-group-item">
+<i class="fa fa-circle"></i>
+{{t}}
+</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- NEXT PROCESS -->
+
+<div class="text-end">
+
+<a href="/process4" class="process-btn">
+Next Process →
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

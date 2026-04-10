@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dyslexia Test | NeuroRead</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#eef3f9;
+font-family:'Poppins',sans-serif;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+height:100vh;
+width:250px;
+position:fixed;
+left:0;
+top:0;
+background:linear-gradient(180deg,#0f4c81,#1c87ff);
+padding:30px 20px;
+color:white;
+box-shadow:3px 0 20px rgba(0,0,0,0.2);
+}
+
+.logo{
+text-align:center;
+font-weight:700;
+margin-bottom:40px;
+font-size:22px;
+letter-spacing:1px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.menu a{
+display:flex;
+align-items:center;
+gap:12px;
+padding:14px 16px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+font-size:15px;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.3s;
+}
+
+.menu a:hover{
+background:rgba(255,255,255,0.18);
+transform:translateX(6px);
+}
+
+.menu a.active{
+background:white;
+color:#0f4c81;
+font-weight:600;
+}
+
+.menu a.logout{
+margin-top:20px;
+background:rgba(255,80,80,0.2);
+}
+
+.menu a.logout:hover{
+background:#ff4d4d;
+color:white;
+}
+
+/* HEADER */
+
+.header{
+margin-left:250px;
+height:75px;
+background:linear-gradient(135deg,#ffffff,#f4f7fc);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+border-bottom:1px solid #e6ecf2;
+}
+
+.header-left h4{
+font-weight:700;
+color:#0f4c81;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+.user-profile{
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:600;
+}
+
+.user-profile img{
+width:35px;
+height:35px;
+border-radius:50%;
+}
+
+/* MAIN */
+
+.main-content{
+margin-left:250px;
+padding:40px;
+}
+
+/* TEST CARD */
+/* TEST CONTAINER */
+
+.test-container{
+background:linear-gradient(145deg,#ffffff,#f6f9ff);
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.08);
+border:1px solid #e6ecf5;
+}
+
+/* TITLE */
+
+.test-title{
+font-weight:700;
+color:#0f4c81;
+margin-bottom:30px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* SECTIONS */
+
+.test-section{
+background:white;
+padding:25px;
+border-radius:15px;
+margin-bottom:25px;
+border:1px solid #edf2f7;
+box-shadow:0 5px 12px rgba(0,0,0,0.04);
+}
+
+.test-section h5{
+color:#1c87ff;
+font-weight:600;
+margin-bottom:15px;
+}
+
+/* SENTENCE BOX */
+
+.sentence-box{
+background:#f1f6ff;
+padding:15px;
+border-radius:10px;
+font-weight:600;
+color:#0f4c81;
+font-size:16px;
+border-left:5px solid #1c87ff;
+}
+
+/* INPUT */
+
+.input-box{
+border-radius:8px;
+border:1px solid #dbe4f1;
+}
+
+/* BUTTON */
+
+.test-btn{
+background:linear-gradient(135deg,#1c87ff,#0f4c81);
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+}
+
+.test-btn:hover{
+opacity:0.9;
+}
+
+/* CANVAS */
+
+.canvas-box{
+background:#f8fbff;
+border-radius:10px;
+padding:10px;
+border:2px dashed #c8d7f3;
+}
+
+/* RESULT */
+
+.result-container{
+margin-top:30px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 30px rgba(0,0,0,0.08);
+}
+
+.result-main{
+font-size:20px;
+font-weight:700;
+color:#0f4c81;
+margin-bottom:20px;
+}
+
+/* SPEECH TEXT */
+
+.speech-output{
+margin-top:10px;
+color:#00a65a;
+font-weight:600;
+}
+
+/* PREDICT BUTTON */
+
+.predict-btn{
+background:linear-gradient(135deg,#1c87ff,#0f4c81);
+border:none;
+padding:12px 35px;
+border-radius:10px;
+color:white;
+font-weight:600;
+font-size:16px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h3 class="logo"><i class="fa fa-brain"></i> NeuroRead</h3>
+
+<div class="menu">
+
+<a href="/user_dashboard">
+<i class="fa fa-chart-line"></i>
+<span>Dashboard</span>
+</a>
+
+<a class="active" href="/predict">
+<i class="fa fa-brain"></i>
+<span>Dyslexia Test</span>
+</a>
+
+<a href="/results">
+<i class="fa fa-chart-bar"></i>
+<span>My Results</span>
+</a>
+
+<a class="logout" href="/logout">
+<i class="fa fa-sign-out-alt"></i>
+<span>Logout</span>
+</a>
+
+</div>
+
+</div>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="header-left">
+<h4><i class="fa fa-brain"></i> Dyslexia Prediction Test</h4>
+</div>
+
+<div class="header-right">
+
+<div class="user-profile">
+<img src="https://i.pravatar.cc/40">
+<span>{{session.user}}</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+<div class="container-fluid">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-9">
+
+<div class="test-container">
+
+<h3 class="test-title">
+<i class="fa fa-brain"></i> Multimodal Dyslexia Assessment
+</h3>
+
+<form method="POST">
+
+<!-- AGE -->
+
+<div class="test-section">
+
+<h5><i class="fa fa-user"></i> Basic Information</h5>
+
+<label class="form-label">Age</label>
+<input type="number" name="age" class="form-control input-box" required>
+
+</div>
+
+<!-- READING TEST -->
+
+<div class="test-section">
+
+<h5><i class="fa fa-book-open"></i> Reading Test</h5>
+
+<p class="test-text">Read this sentence aloud:</p>
+
+<div class="sentence-box">
+{{sentence}}
+</div>
+
+<input type="hidden" name="correct_sentence" value="{{sentence}}">
+
+<button type="button" onclick="startSpeech()" class="btn test-btn mt-3">
+<i class="fa fa-microphone"></i> Start Microphone
+</button>
+
+<input type="hidden" name="speech_text" id="speech_text">
+
+<p id="speech_result" class="speech-output"></p>
+
+</div>
+
+<!-- SPELLING -->
+
+<div class="test-section">
+
+<h5><i class="fa fa-keyboard"></i> Spelling Test</h5>
+
+<p class="test-text">Spell this word:</p>
+
+<div class="sentence-box">
+{{spelling_word}}
+</div>
+
+<input type="hidden" name="correct_word" value="{{spelling_word}}">
+
+<input type="text" name="spelling_input" class="form-control input-box">
+
+</div>
+
+<!-- HANDWRITING -->
+
+<div class="test-section">
+
+<h5><i class="fa fa-pen"></i> Handwriting Test</h5>
+
+<p class="test-text">Write the word <b>{{handwriting_word}}</b></p>
+
+<div class="canvas-box">
+<canvas id="canvas" width="500" height="220"></canvas>
+</div>
+
+<button type="button" onclick="clearCanvas()" class="btn btn-secondary mt-3">
+<i class="fa fa-eraser"></i> Clear
+</button>
+
+<input type="hidden" name="handwriting_score" id="handwriting_score">
+
+</div>
+
+<!-- SUBMIT -->
+
+<div class="text-center mt-4">
+
+<button class="predict-btn">
+<i class="fa fa-brain"></i> Predict Dyslexia Risk
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+
+{% if result %}
+
+<div class="result-container">
+
+<h4><i class="fa fa-chart-bar"></i> Prediction Result</h4>
+
+<div class="result-box">
+
+<p class="result-main">{{result}}</p>
+
+<div class="row text-center">
+
+<div class="col-md-6">
+<h6>Risk Score</h6>
+<h3>{{risk_score}}</h3>
+</div>
+
+<div class="col-md-6">
+<h6>Risk Level</h6>
+<h3>{{risk_level}}</h3>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function startSpeech(){
+
+const recognition = new webkitSpeechRecognition();
+
+recognition.lang="en-US";
+
+recognition.start();
+
+recognition.onresult=function(event){
+
+let text=event.results[0][0].transcript;
+
+document.getElementById("speech_result").innerHTML=text;
+
+document.getElementById("speech_text").value=text;
+
+}
+
+}
+
+</script>
+
+<script>
+
+let canvas=document.getElementById("canvas");
+let ctx=canvas.getContext("2d");
+
+let drawing=false;
+
+canvas.onmousedown=function(){drawing=true}
+
+canvas.onmouseup=function(){drawing=false}
+
+canvas.onmousemove=function(e){
+
+if(!drawing) return;
+
+ctx.lineWidth=3;
+ctx.lineTo(e.offsetX,e.offsetY);
+ctx.stroke();
+
+}
+
+function clearCanvas(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+}
+
+</script>
+
+<script>
+
+document.querySelector("form").onsubmit=function(){
+
+let score=Math.random().toFixed(2);
+
+document.getElementById("handwriting_score").value=score;
+
+}
+
+</script>
+
+</body>
+</html>

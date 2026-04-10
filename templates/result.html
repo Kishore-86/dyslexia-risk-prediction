@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Dyslexia Result | NeuroRead</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#eef3f9;
+font-family:'Poppins',sans-serif;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+height:100vh;
+width:250px;
+position:fixed;
+left:0;
+top:0;
+background:linear-gradient(180deg,#0f4c81,#1c87ff);
+padding:30px 20px;
+color:white;
+}
+
+.logo{
+text-align:center;
+font-weight:700;
+margin-bottom:40px;
+font-size:22px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.menu a{
+padding:14px;
+border-radius:10px;
+color:white;
+text-decoration:none;
+background:rgba(255,255,255,0.1);
+}
+
+.menu a:hover{
+background:rgba(255,255,255,0.25);
+}
+
+.menu a.active{
+background:white;
+color:#0f4c81;
+font-weight:600;
+}
+
+/* HEADER */
+
+.header{
+margin-left:250px;
+height:70px;
+background:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.user-profile{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:600;
+}
+
+/* MAIN */
+
+.main-content{
+margin-left:250px;
+padding:40px;
+}
+
+/* RESULT CARD */
+
+.result-card{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 15px 35px rgba(0,0,0,0.08);
+margin-bottom:30px;
+}
+
+/* RESULT STATS */
+
+.result-stat{
+text-align:center;
+padding:25px;
+border-radius:15px;
+background:#f4f7ff;
+transition:0.3s;
+}
+
+.result-stat:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+.result-stat i{
+font-size:28px;
+margin-bottom:10px;
+color:#1c87ff;
+}
+
+/* RISK BADGES */
+
+.badge-low{
+background:#28a745;
+padding:8px 18px;
+border-radius:30px;
+color:white;
+font-weight:600;
+}
+
+.badge-moderate{
+background:#ff9800;
+padding:8px 18px;
+border-radius:30px;
+color:white;
+font-weight:600;
+}
+
+.badge-high{
+background:#e53935;
+padding:8px 18px;
+border-radius:30px;
+color:white;
+font-weight:600;
+}
+
+/* RISK PROGRESS */
+
+.progress{
+height:12px;
+border-radius:20px;
+}
+
+/* ANALYSIS BOX */
+
+.analysis-box{
+background:#f7f9ff;
+border-left:6px solid #1c87ff;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+transition:0.3s;
+}
+
+.analysis-box:hover{
+transform:scale(1.01);
+}
+
+.analysis-box h5{
+color:#0f4c81;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.analysis-box p{
+color:#444;
+line-height:1.7;
+}
+
+/* RESULT HEADER */
+
+.result-header{
+text-align:center;
+margin-bottom:25px;
+}
+
+.result-header h3{
+font-weight:700;
+color:#0f4c81;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h3 class="logo"><i class="fa fa-brain"></i> NeuroRead</h3>
+
+<div class="menu">
+
+<a href="/user_dashboard">
+<i class="fa fa-chart-line"></i> Dashboard
+</a>
+
+<a href="/predict">
+<i class="fa fa-brain"></i> Dyslexia Test
+</a>
+
+<a class="active" href="#">
+<i class="fa fa-chart-bar"></i> Result
+</a>
+
+<a href="/logout">
+<i class="fa fa-sign-out-alt"></i> Logout
+</a>
+
+</div>
+
+</div>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<h4><i class="fa fa-chart-bar"></i> Dyslexia Analysis Report</h4>
+
+<div class="user-profile">
+<img src="https://i.pravatar.cc/40">
+<span>{{session.user}}</span>
+</div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+<div class="container-fluid">
+
+<div class="result-card">
+
+<div class="result-header">
+<h3>AI Dyslexia Risk Result</h3>
+<p>Machine Learning based dyslexia risk assessment</p>
+</div>
+
+<div class="row text-center">
+
+<div class="col-md-4">
+<div class="result-stat">
+<i class="fa fa-brain"></i>
+<h6 class="mt-2">Prediction</h6>
+<h4>{{result}}</h4>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="result-stat">
+<i class="fa fa-chart-line"></i>
+<h6 class="mt-2">Risk Score</h6>
+<h4>{{risk_score}}%</h4>
+
+<div class="progress mt-3">
+
+{% if risk_level == "Low" %}
+<div class="progress-bar bg-success" style="width:{{risk_score}}%"></div>
+
+{% elif risk_level == "Medium" %}
+<div class="progress-bar bg-warning" style="width:{{risk_score}}%"></div>
+
+{% else %}
+<div class="progress-bar bg-danger" style="width:{{risk_score}}%"></div>
+{% endif %}
+
+</div>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="result-stat">
+<i class="fa fa-exclamation-triangle"></i>
+<h6 class="mt-2">Risk Level</h6>
+
+{% if risk_level == "Low" %}
+<span class="badge-low">Low Risk</span>
+
+{% elif risk_level == "Medium" %}
+<span class="badge-moderate">Medium Risk</span>
+
+{% else %}
+<span class="badge-high">High Risk</span>
+{% endif %}
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="result-card">
+
+<h4 class="mb-4">
+<i class="fa fa-microscope"></i> Detailed Dyslexia Analysis for Each Test
+</h4>
+
+<div class="analysis-box">
+<h5>Reading Test</h5>
+<p><b>Risk Score:</b> {{test_analysis.reading.score}}%</p>
+<p><b>Risk Level:</b> {{test_analysis.reading.level}}</p>
+<p>{{test_analysis.reading.analysis}}</p>
+</div>
+
+<div class="analysis-box">
+<h5>Spelling Test</h5>
+<p><b>Risk Score:</b> {{test_analysis.spelling.score}}%</p>
+<p><b>Risk Level:</b> {{test_analysis.spelling.level}}</p>
+<p>{{test_analysis.spelling.analysis}}</p>
+</div>
+
+
+<div class="analysis-box">
+<h5>Handwriting Test</h5>
+<p><b>Risk Score:</b> {{test_analysis.handwriting.score}}%</p>
+<p><b>Risk Level:</b> {{test_analysis.handwriting.level}}</p>
+<p>{{test_analysis.handwriting.analysis}}</p>
+</div>
+
+</div>
+<!-- AI ANALYSIS -->
+
+<div class="result-card">
+
+<h4 class="mb-4"><i class="fa fa-robot"></i> AI System Analysis</h4>
+
+<div class="analysis-box">
+<h5>Multimodal Learning Analysis</h5>
+<p>{{analysis.multimodal}}</p>
+</div>
+
+<div class="analysis-box">
+<h5>Machine Learning Prediction Model</h5>
+<p>{{analysis.ai_model}}</p>
+</div>
+
+<div class="analysis-box">
+<h5>Digital Learner Twin</h5>
+<p>{{analysis.digital_twin}}</p>
+</div>
+
+<div class="analysis-box">
+<h5>Adaptive Learning Recommendation</h5>
+<p>{{analysis.recommendation}}</p>
+</div>
+
+</div>
+
+<div class="text-center">
+
+<a href="/predict" class="btn btn-primary px-4">
+<i class="fa fa-redo"></i> Take Another Test
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
